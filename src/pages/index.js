@@ -1,6 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import tw from 'twin.macro';
+
+const Container = tw.div`bg-black p-5`;
 
 export default function Home() {
   return (
@@ -12,6 +15,9 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <Container>
+          asd
+        </Container>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
