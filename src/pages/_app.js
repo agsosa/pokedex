@@ -1,10 +1,11 @@
 import '@/styles/globals.css';
 import GlobalStyles from '@/components/misc/GlobalStyles';
 import Head from 'next/head';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <>
+    <ChakraProvider>
       <Head>
         <title>Pokedex</title>
         <meta name='description' content='Pokedex App' />
@@ -14,7 +15,7 @@ function MyApp({ Component, pageProps }) {
       <GlobalStyles />
 
       <Component {...pageProps} />
-    </>
+    </ChakraProvider>
   );
 }
 
