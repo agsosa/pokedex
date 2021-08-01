@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import tw from 'twin.macro';
 
 import usePokedex from '@/lib/usePokedex';
@@ -9,7 +8,6 @@ import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
 import Footer from '@/components/layout/Footer';
 
-const Footer = tw.footer`p-5 flex justify-center items-center w-full my-auto`;
 const CardsContainer = tw.div`grid grid-cols-4 gap-10 justify-center items-center w-full`;
 
 export default function Home() {
@@ -18,7 +16,6 @@ export default function Home() {
 
   const fetchPokemons = async () => {
     const list = await getPokemonsWithDetails();
-console.log("list",list)
 
     if (!list.error) setData(list.data);
     else console.log(list.error); // TODO show error or something

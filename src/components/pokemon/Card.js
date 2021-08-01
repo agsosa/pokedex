@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { usePalette } from 'react-palette';
 import TypeTag from './TypeTag';
 import usePokedex from '@/lib/usePokedex';
+import Link from 'next/link';
 
 const Card = tw.a`transform flex flex-col justify-center items-center bg-white shadow-xl w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer`;
 const CardHeader = tw.div`flex flex-col items-center justify-center w-full relative h-full rounded-t-xl h-full p-3 pb-36`;
@@ -25,45 +26,48 @@ const StatName = tw.span`text-gray-600 text-sm`;
 
 export default function CardPokemon({ pokemon }) {
   const { getPokemonSprite } = usePokedex();
-  const { data: imgData, loading, error } = usePalette(getPokemonSprite(pokemon.id)); // Get pokemon's sprite predominant colors
+  const sprite = getPokemonSprite(pokemon.id);
+  const { data: imgData, loading, error } = usePalette(sprite); // Get pokemon's sprite predominant colors
 
   return (
-    <Card className='group'>
-      <CardHeader style={{ backgroundColor: imgData?.vibrant }}>
-        <SpriteContainer>
-          <Image src={pokemon.sprite} alt={pokemon.name} width='130px' height='130px' />
-        </SpriteContainer>
-      </CardHeader>
-      <CardContent>
-        <NameContainer>
-          <Name>{pokemon.name}</Name>
-          <Number>#{pokemon.id}</Number>
-        </NameContainer>
+    <Link href={`/details/${pokemon.id}`}>
+      <Card className='group' >
+        <CardHeader style={{ backgroundColor: imgData?.vibrant }}>
+          <SpriteContainer>
+            <Image src={sprite} alt={pokemon.name} width='130px' height='130px' />
+          </SpriteContainer>
+        </CardHeader>
+        <CardContent>
+          <NameContainer>
+            <Name>{pokemon.name}</Name>
+            <Number>#{pokemon.id}</Number>
+          </NameContainer>
 
-        <StatsContainer>
-          <Stat>
-            <StatName>HP</StatName>
+          <StatsContainer>
+            <Stat>
+              <StatName>HP</StatName>
 
-            <StatNumber>{pokemon.stats.health}</StatNumber>
-          </Stat>
-          <Stat>
-            <StatName>Attack</StatName>
+              <StatNumber>{pokemon.stats.health}</StatNumber>
+            </Stat>
+            <Stat>
+              <StatName>Attack</StatName>
 
-            <StatNumber>{pokemon.stats.attack}</StatNumber>
-          </Stat>
+              <StatNumber>{pokemon.stats.attack}</StatNumber>
+            </Stat>
 
-          <Stat>
-            <StatName>Defense</StatName>
+            <Stat>
+              <StatName>Defense</StatName>
 
-            <StatNumber>{pokemon.stats.defense}</StatNumber>
-          </Stat>
-        </StatsContainer>
-        <TypesContainer>
-          {pokemon.types.map((t) => (
-            <TypeTag type={t} />
-          ))}
-        </TypesContainer>
-      </CardContent>
-    </Card>
+              <StatNumber>{pokemon.stats.defense}</StatNumber>
+            </Stat>
+          </StatsContainer>
+          <TypesContainer>
+            {pokemon.types.map((t) => (
+              <TypeTag type={t} />
+            ))}
+          </TypesContainer>
+        </CardContent>
+      </Card>
+    </Link>
   );
 }
