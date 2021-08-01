@@ -5,6 +5,9 @@ import { usePalette } from 'react-palette';
 import TypeTag from './TypeTag';
 import usePokedex from '@/lib/usePokedex';
 import Link from 'next/link';
+import { GiBroadsword,  GiShield } from 'react-icons/gi';
+import { FaRegHeart } from 'react-icons/fa';
+import { BiShield } from 'react-icons/bi';
 
 const Card = tw.a`transform flex flex-col justify-center items-center bg-white shadow-xl w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer`;
 const CardHeader = tw.div`flex flex-col items-center justify-center w-full relative h-full rounded-t-xl h-full p-3 pb-36`;
@@ -20,9 +23,9 @@ const SpriteContainer = tw.div`bg-white rounded-full p-5 absolute top-1/3 transf
 const TypesContainer = tw.div`flex space-x-2`;
 const StatsContainer = tw.div`flex space-x-2 divide-x-2`;
 
-const Stat = tw.div`flex flex-col justify-center items-center w-full px-3`;
+const Stat = tw.div`flex space-x-2 justify-center items-center w-full px-3`;
 const StatNumber = tw.span`font-bold text-xl`;
-const StatName = tw.span`text-gray-600 text-sm`;
+const StatIcon = tw.span`text-gray-600 text-lg`;
 
 export default function CardPokemon({ pokemon }) {
   const { getPokemonSprite } = usePokedex();
@@ -46,23 +49,23 @@ export default function CardPokemon({ pokemon }) {
 
           <StatsContainer>
             <Stat>
-              <StatName>HP</StatName>
+              <StatIcon><FaRegHeart/></StatIcon>
 
               <StatNumber>{pokemon.stats.health}</StatNumber>
             </Stat>
             <Stat>
-              <StatName>Attack</StatName>
+              <StatIcon><GiBroadsword /></StatIcon>
 
               <StatNumber>{pokemon.stats.attack}</StatNumber>
             </Stat>
 
             <Stat>
-              <StatName>Defense</StatName>
+              <StatIcon><BiShield/></StatIcon>
 
               <StatNumber>{pokemon.stats.defense}</StatNumber>
             </Stat>
           </StatsContainer>
-          
+
           <TypesContainer>
             {pokemon.types.map((t) => (
               <TypeTag type={t} />

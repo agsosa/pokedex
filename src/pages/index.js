@@ -8,7 +8,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
 import Footer from '@/components/layout/Footer';
 
-const CardsContainer = tw.div`grid grid-cols-4 gap-10 justify-center items-center w-full`;
+const CardsContainer = tw.div`grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-center items-center w-full`;
 
 export default function Home() {
   const { getPokemonsWithDetails } = usePokedex();
