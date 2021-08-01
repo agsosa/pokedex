@@ -10,7 +10,6 @@ import { motion } from 'framer-motion';
 const Header = tw.div`w-full flex flex-col justify-between items-center relative `;
 
 export default function DetailsHeader({ pokemon }) {
-
   // Pokemon sprite state
   const { getPokemonSprite } = usePokedex();
   const sprite = getPokemonSprite(pokemon.id)

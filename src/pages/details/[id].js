@@ -1,4 +1,3 @@
-import tw from 'twin.macro';
 import * as React from 'react';
 import usePokedex from '@/lib/usePokedex';
 import { useRouter } from 'next/router';

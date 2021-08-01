@@ -3,6 +3,7 @@ import tw from 'twin.macro';
 import { GiBroadsword } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { BiShield } from 'react-icons/bi';
+import { Tooltip } from '@chakra-ui/react';
 
 const StatsContainer = tw.div`flex space-x-2 divide-x-2`;
 
@@ -11,21 +12,38 @@ const StatNumber = tw.span`font-bold text-xl`;
 const StatIcon = tw.span`text-gray-600 text-lg`;
 
 export default function StatsList({ pokemon, extended = false }) {
-  let health = 0, attack = 0, defense = 0, specialAttack = 0, specialDefense = 0, speed = 0;
-  
+  let health = 0,
+    attack = 0,
+    defense = 0,
+    specialAttack = 0,
+    specialDefense = 0,
+    speed = 0;
+
   for (let stat of pokemon.stats) {
     const { base_stat } = stat;
 
     switch (stat.stat.name) {
-      case "hp": health = base_stat; break;
-      case "attack": attack = base_stat; break;
-      case "defense": defense = base_stat; break;
-      case "special-attack": specialAttack = base_stat; break;
-      case "special-defense": specialDefense = base_stat; break;
-      case "speed": speed = base_stat; break;
+      case 'hp':
+        health = base_stat;
+        break;
+      case 'attack':
+        attack = base_stat;
+        break;
+      case 'defense':
+        defense = base_stat;
+        break;
+      case 'special-attack':
+        specialAttack = base_stat;
+        break;
+      case 'special-defense':
+        specialDefense = base_stat;
+        break;
+      case 'speed':
+        speed = base_stat;
+        break;
     }
   }
-  
+
   const stats = [
     { icon: <FaRegHeart />, name: 'Health', value: health },
     { icon: <GiBroadsword />, name: 'Attack', value: attack },
@@ -41,11 +59,13 @@ export default function StatsList({ pokemon, extended = false }) {
         if (s.extended && !extended) return null;
 
         return (
-          <Stat>
-            <StatIcon>{s.icon}</StatIcon>
+          <Tooltip key={s.name} label={s.name} placement='top'>
+            <Stat>
+              <StatIcon>{s.icon}</StatIcon>
 
-            <StatNumber>{s.value}</StatNumber>
-          </Stat>
+              <StatNumber>{s.value}</StatNumber>
+            </Stat>
+          </Tooltip>
         );
       })}
     </StatsContainer>

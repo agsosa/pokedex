@@ -1,6 +1,7 @@
+// Full page pokemon details component
+
 import tw from 'twin.macro';
 import * as React from 'react';
-import usePokedex from '@/lib/usePokedex';
 import PageContainer from '@/components/layout/PageContainer';
 import DetailsHeader from '@/components/pokemon/details/DetailsHeader';
 import Footer from '@/components/layout/Footer';
@@ -15,7 +16,6 @@ export default function DetailsComponent({ pokemon }) {
   const previousButton = (
     <Link href={`/details/${pokemon.id - 1}`}>
       <Button left={<AiOutlineArrowLeft />} label='Previous' />
-
     </Link>
   );
 
