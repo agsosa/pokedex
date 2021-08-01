@@ -5,20 +5,26 @@ import PokemonDetails from '@/components/pokemon/details';
 
 export default function DetailsPage() {
   const router = useRouter();
-  const { getPokemonDetails } = usePokedex();
+  const { getPokemonDetails, getAbilitiesData } = usePokedex();
   const [pokemon, setPokemon] = React.useState(null);
 
   const fetchData = async () => {
-    const result = await getPokemonDetails(parseInt(router.query.id));
+    const details = await getPokemonDetails(parseInt(router.query.id));
+    if (details.error) return; // TODO: Show error
 
-    if (!result.error) setPokemon(result.data);
+    const abilities = await getAbilitiesData(details.data.abilities);
+    if (abilities.error) return; // TODO: Show error
+
+    details.data.abilitiesData = abilities.data;
+    
+    setPokemon(details.data);
   };
 
   React.useEffect(() => {
     fetchData();
   }, [router.query.id]);
 
-  if (!pokemon) return "No pokemon loaded"
+  if (!pokemon) return 'No pokemon loaded';
 
   return <PokemonDetails pokemon={pokemon} />;
 }

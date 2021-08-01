@@ -10,8 +10,9 @@ import Link from 'next/link';
 import Button from '@/components/common/Button';
 import StatsList from '@/components/pokemon/common/StatsList';
 import TypesList from '@/components/pokemon/common/TypesList';
+import AbilitiesList from '@/components/pokemon/common/AbilitiesList';
 
-const ContentContainer = tw.section`flex justify-between items-center h-full z-10 p-5 px-40 w-full`;
+const ContentContainer = tw.section`flex justify-between items-center h-full z-10 pt-10 pb-16 px-40 w-full`;
 
 const DetailsGrid = tw.div`grid grid-cols-2 gap-10 w-full items-start justify-center`;
 
@@ -33,8 +34,6 @@ export default function DetailsComponent({ pokemon }) {
       <Button right={<AiOutlineArrowRight />} label='Next' />
     </Link>
   );
-
-  console.log(pokemon);
 
   return (
     <PageContainer>
@@ -67,6 +66,11 @@ export default function DetailsComponent({ pokemon }) {
           <Section tw="col-span-2">
             <SectionTitle>Types</SectionTitle>
             <TypesList pokemon={pokemon} big />
+          </Section>
+
+          <Section tw="col-span-2">
+            <SectionTitle>Abilities</SectionTitle>
+            <AbilitiesList pokemon={pokemon} />
           </Section>
         </DetailsGrid>
 
