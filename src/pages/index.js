@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Image from 'next/image';
-import styles from '@/styles/Home.module.css';
 import tw from 'twin.macro';
 
 import usePokedex from '@/lib/usePokedex';
@@ -8,6 +7,7 @@ import usePokedex from '@/lib/usePokedex';
 import Card from '@/components/pokemon/Card';
 import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
+import Footer from '@/components/layout/Footer';
 
 const Footer = tw.footer`p-5 flex justify-center items-center w-full my-auto`;
 const CardsContainer = tw.div`grid grid-cols-4 gap-10 justify-center items-center w-full`;
@@ -36,17 +36,7 @@ console.log("list",list)
         </CardsContainer>
       </MainContainer>
 
-      <Footer>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
-          </span>
-        </a>
-      </Footer>
+      <Footer />
     </PageContainer>
   );
 }
