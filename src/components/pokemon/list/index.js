@@ -3,7 +3,10 @@ import tw from 'twin.macro';
 import Card from '@/components/pokemon/list/Card';
 import Pagination from '@/components/common/Pagination';
 
-const CardsContainer = tw.div`grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-center items-center w-full`;
+const CardsContainer = tw.div`
+flex flex-col space-y-6 justify-center items-center w-full
+sm:space-y-0 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 
+gap-10`;
 
 export default function List({ pokemons }) {
   return (
