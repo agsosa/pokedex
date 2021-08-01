@@ -1,5 +1,5 @@
 import * as React from 'react';
-import tw from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 import TypeTag from './TypeTag';
 
 const TypesContainer = tw.div`flex space-x-2`;

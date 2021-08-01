@@ -3,12 +3,10 @@ import tw from 'twin.macro';
 
 import usePokedex from '@/lib/usePokedex';
 
-import Card from '@/components/pokemon/list/Card';
+import PokemonsList from '@/components/pokemon/list';
 import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
 import Footer from '@/components/layout/Footer';
-
-const CardsContainer = tw.div`grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-center items-center w-full`;
 
 export default function Home() {
   const { getPokemonsWithDetails } = usePokedex();
@@ -28,9 +26,7 @@ export default function Home() {
   return (
     <PageContainer>
       <MainContainer>
-        <CardsContainer>
-          {Array.isArray(data) && data.length > 0 && data.map((d) => <Card pokemon={d} />)}
-        </CardsContainer>
+        <PokemonsList pokemons={data} />
       </MainContainer>
 
       <Footer />
