@@ -27,7 +27,8 @@ const StatName = tw.span`text-gray-600 text-sm`;
 export default function CardPokemon({ pokemon }) {
   const { getPokemonSprite } = usePokedex();
   const sprite = getPokemonSprite(pokemon.id);
-  const { data: imgData, loading, error } = usePalette(sprite); // Get pokemon's sprite predominant colors
+
+  const { data: imgData, loading, error } = usePalette(sprite); // Get pokemon's sprite colors
 
   return (
     <Link href={`/details/${pokemon.id}`}>
@@ -61,6 +62,7 @@ export default function CardPokemon({ pokemon }) {
               <StatNumber>{pokemon.stats.defense}</StatNumber>
             </Stat>
           </StatsContainer>
+          
           <TypesContainer>
             {pokemon.types.map((t) => (
               <TypeTag type={t} />

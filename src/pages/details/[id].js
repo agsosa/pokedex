@@ -1,19 +1,11 @@
 import tw from 'twin.macro';
 import * as React from 'react';
-import Image from 'next/image';
-import { usePalette } from 'react-palette';
 import usePokedex from '@/lib/usePokedex';
 import PageContainer from '@/components/layout/PageContainer';
-import TitleBar from '@/components/pokemon/details/TitleBar';
 import DetailsHeader from '@/components/pokemon/details/DetailsHeader';
 import Footer from '@/components/layout/Footer';
 
-import MainContainer from '@/components/layout/MainContainer';
-import styles from '@/styles/Details.module.css';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
-
-const Header = tw.div`w-full flex flex-col justify-between items-center relative `;
 
 const NavigationBtn = tw.button`rounded-lg  text-white text-lg font-semibold p-5`;
 

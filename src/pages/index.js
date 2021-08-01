@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 
 import usePokedex from '@/lib/usePokedex';
 
-import Card from '@/components/pokemon/Card';
+import Card from '@/components/pokemon/list/Card';
 import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
 import Footer from '@/components/layout/Footer';
