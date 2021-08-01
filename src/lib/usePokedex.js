@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 export default function usePokedex() {
+  const BASE_URL = "https://pokeapi.co" // TODO: use process.env
+
   const getPokemons = async () => {
-    const URL = 'https://pokeapi.co/api/v2/pokemon';
+    const URL = BASE_URL + '/api/v2/pokemon';
 
     try {
       const { data } = await axios.get(URL);
@@ -13,7 +15,7 @@ export default function usePokedex() {
   };
 
   const getPokemonDetails = async (id_or_name) => {
-    const URL = `https://pokeapi.co/api/v2/pokemon/${id_or_name}`;
+    const URL = `${BASE_URL}/api/v2/pokemon/${id_or_name}`;
 
     try {
       const { data } = await axios.get(URL);
@@ -21,7 +23,6 @@ export default function usePokedex() {
       const resultData = {
         id: data.id,
         name: data.name,
-        sprite: data.sprites?.other?.dream_world?.front_default,
         stats: {
           health: data.stats[0]?.base_stat,
           attack: data.stats[1]?.base_stat,
@@ -58,13 +59,18 @@ export default function usePokedex() {
     // Wait for all the pokemon details promises
     await Promise.allSettled(promises);
 
+    result.sort((a,b) => a.id - b.id);
+
     // Resolve
     return { error: false, data: result };
   };
+
+  const getPokemonSprite = (id) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
 
   return {
     getPokemons,
     getPokemonDetails,
     getPokemonsWithDetails,
+    getPokemonSprite,
   };
 }
