@@ -19,11 +19,11 @@ const Number = tw.span`text-gray-700`;
 
 const SpriteContainer = tw.div`bg-white rounded-full p-5 absolute top-1/3 transform group-hover:scale-125 transition duration-500`;
 
-
 export default function CardPokemon({ pokemon }) {
+
+  // Pokemon sprite state
   const { getPokemonSprite } = usePokedex();
   const sprite = getPokemonSprite(pokemon.id);
-
   const { data: imgData, loading, error } = usePalette(sprite); // Get pokemon's sprite colors
 
   return (

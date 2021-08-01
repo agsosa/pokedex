@@ -11,34 +11,43 @@ const StatNumber = tw.span`font-bold text-xl`;
 const StatIcon = tw.span`text-gray-600 text-lg`;
 
 export default function StatsList({ pokemon, extended = false }) {
-  const health = React.useMemo(() => pokemon.stats.find((s) => s.stat.name === 'hp').base_stat, [pokemon]); // memoize hp
-  const attack = React.useMemo(() => pokemon.stats.find((s) => s.stat.name === 'attack').base_stat, [pokemon]); // memoize attack
-  const defense = React.useMemo(() => pokemon.stats.find((s) => s.stat.name === 'defense').base_stat, [pokemon]); // memoize defense
+  let health = 0, attack = 0, defense = 0, specialAttack = 0, specialDefense = 0, speed = 0;
+  
+  for (let stat of pokemon.stats) {
+    const { base_stat } = stat;
+
+    switch (stat.stat.name) {
+      case "hp": health = base_stat; break;
+      case "attack": attack = base_stat; break;
+      case "defense": defense = base_stat; break;
+      case "special-attack": specialAttack = base_stat; break;
+      case "special-defense": specialDefense = base_stat; break;
+      case "speed": speed = base_stat; break;
+    }
+  }
+  
+  const stats = [
+    { icon: <FaRegHeart />, name: 'Health', value: health },
+    { icon: <GiBroadsword />, name: 'Attack', value: attack },
+    { icon: <BiShield />, name: 'Defense', value: defense },
+    { icon: <GiBroadsword />, name: 'Special Attack', value: specialAttack, extended: true },
+    { icon: <BiShield />, name: 'Special Defense', value: specialDefense, extended: true },
+    { icon: <BiShield />, name: 'Speed', value: speed, extended: true },
+  ];
 
   return (
     <StatsContainer>
-      <Stat>
-        <StatIcon>
-          <FaRegHeart />
-        </StatIcon>
+      {stats.map((s) => {
+        if (s.extended && !extended) return null;
 
-        <StatNumber>{health}</StatNumber>
-      </Stat>
-      <Stat>
-        <StatIcon>
-          <GiBroadsword />
-        </StatIcon>
+        return (
+          <Stat>
+            <StatIcon>{s.icon}</StatIcon>
 
-        <StatNumber>{attack}</StatNumber>
-      </Stat>
-
-      <Stat>
-        <StatIcon>
-          <BiShield />
-        </StatIcon>
-
-        <StatNumber>{defense}</StatNumber>
-      </Stat>
+            <StatNumber>{s.value}</StatNumber>
+          </Stat>
+        );
+      })}
     </StatsContainer>
   );
 }
