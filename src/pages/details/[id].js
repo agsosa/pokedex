@@ -6,7 +6,7 @@ import PokemonDetails from '@/components/pokemon/details';
 export default function DetailsPage() {
   const router = useRouter();
   const { getPokemonDetails } = usePokedex();
-  const [pokemon, setPokemon] = React.useState({});
+  const [pokemon, setPokemon] = React.useState(null);
 
   const fetchData = async () => {
     const result = await getPokemonDetails(parseInt(router.query.id));
@@ -17,6 +17,8 @@ export default function DetailsPage() {
   React.useEffect(() => {
     fetchData();
   }, [router.query.id]);
+
+  if (!pokemon) return "No pokemon loaded"
 
   return <PokemonDetails pokemon={pokemon} />;
 }

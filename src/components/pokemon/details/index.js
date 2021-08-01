@@ -8,8 +8,17 @@ import Footer from '@/components/layout/Footer';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
 import Link from 'next/link';
 import Button from '@/components/common/Button';
+import StatsList from '@/components/pokemon/common/StatsList';
+import TypesList from '@/components/pokemon/common/TypesList';
 
-const ContentContainer = tw.section`flex justify-between items-center h-full z-10 p-5 px-10 w-full`;
+const ContentContainer = tw.section`flex justify-between items-center h-full z-10 p-5 px-40 w-full`;
+
+const DetailsGrid = tw.div`grid grid-cols-2 gap-10 w-full items-start justify-center`;
+
+const Section = tw.section`flex flex-col space-y-2 w-full justify-center items-center`;
+const UpperSection = tw.section`col-span-2 flex divide-x-2 divide-gray-300`;
+const SectionTitle = tw.span`uppercase`;
+const Number = tw.span`text-3xl font-semibold`;
 
 export default function DetailsComponent({ pokemon }) {
   // TODO: Add next button ID limit condition
@@ -25,6 +34,8 @@ export default function DetailsComponent({ pokemon }) {
     </Link>
   );
 
+  console.log(pokemon);
+
   return (
     <PageContainer>
       {pokemon.id != null && <DetailsHeader pokemon={pokemon} />}
@@ -32,7 +43,32 @@ export default function DetailsComponent({ pokemon }) {
       <ContentContainer>
         {pokemon.id > 1 && previousButton}
 
-        <div>{pokemon.sprite}</div>
+        <DetailsGrid>
+          <UpperSection>
+            <Section>
+              <SectionTitle>Base Experience</SectionTitle>
+              <Number>{pokemon.base_experience}</Number>
+            </Section>
+            <Section>
+              <SectionTitle>Height</SectionTitle>
+              <Number>{pokemon.height}</Number>
+            </Section>
+            <Section>
+              <SectionTitle>Weight</SectionTitle>
+              <Number>{pokemon.weight}</Number>
+            </Section>
+          </UpperSection>
+
+          <Section tw="col-span-2">
+            <SectionTitle>Statistics</SectionTitle>
+            <StatsList pokemon={pokemon} extended />
+          </Section>
+
+          <Section tw="col-span-2">
+            <SectionTitle>Types</SectionTitle>
+            <TypesList pokemon={pokemon} big />
+          </Section>
+        </DetailsGrid>
 
         {nextButton}
       </ContentContainer>
