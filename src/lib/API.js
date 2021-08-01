@@ -102,5 +102,9 @@ export const getPokemonsWithDetails = async (page = 1) => {
   return { error: false, data: result };
 };
 
+// official-artwork
+
 export const getPokemonSprite = (id) =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+
+  //  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;

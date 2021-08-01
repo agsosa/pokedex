@@ -13,7 +13,7 @@ transform hover:scale-110 transition duration-500`;
 
 export default function CardPokemon({ pokemon }) {
   return (
-    <Link href={`/details/${pokemon.id}`}>
+    <Link href={`/pokemons/details/${pokemon.id}`}>
       <Card className='group'>
         <CardHeader pokemon={pokemon} />
         <CardContent pokemon={pokemon} />

@@ -8,7 +8,7 @@ const CardsContainer = tw.div`grid sm:grid-cols-2 lg:grid-cols-4 gap-10 justify-
 export default function List({ pokemons }) {
   return (
     <CardsContainer>
-      {Array.isArray(pokemons) && pokemons.length > 0 && pokemons.map((p) => <Card pokemon={p} />)}
+      {Array.isArray(pokemons) && pokemons.length > 0 && pokemons.map((p) => <Card key={p.id} pokemon={p} />)}
     </CardsContainer>
   );
 }

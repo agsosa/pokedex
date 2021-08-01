@@ -4,8 +4,14 @@ import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 
 const Container = tw.div`w-full flex flex-col space-y-2 mt-8 text-xl justify-center items-center`;
-const Btn = tw.button`border px-3 py-1 bg-white rounded-md disabled:opacity-60 disabled:cursor-not-allowed`;
+
+const Btn = tw.button`border px-3 py-1 bg-white rounded-md 
+disabled:opacity-60 disabled:cursor-not-allowed 
+hocus:outline-none 
+transition duration-500 hover:bg-gray-200`;
+
 const PageText = tw.span``;
+
 const BtnContainer = tw.div`flex space-x-2`;
 
 export default function Pagination({ totalPages = 0, page = 1, onPreviousPage, onNextPage, onPageJump }) {
@@ -19,8 +25,8 @@ export default function Pagination({ totalPages = 0, page = 1, onPreviousPage, o
     if (onPageJump) onPageJump(totalPages);
   };
 
-  const isFirstPage = page === 1;
-  const isLastPage = page === totalPages;
+  const isFirstPage = page == 1;
+  const isLastPage = page == totalPages;
 
   return (
     <Container>

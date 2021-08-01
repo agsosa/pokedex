@@ -2,9 +2,10 @@ import * as React from 'react';
 import Image from 'next/image';
 import tw from 'twin.macro';
 import { usePalette } from 'react-palette';
-import usePokedex from '@/lib/usePokedex';
+import { getPokemonSprite } from '@/lib/API';
 
 const CardHeader = tw.div`
+filter contrast-125
 flex flex-col items-center justify-center relative
 w-full h-full 
 rounded-t-xl p-3 pb-36`;
@@ -16,7 +17,6 @@ transform group-hover:scale-125 transition duration-500`;
 
 export default function CardHeaderComponent({ pokemon }) {
   // Pokemon sprite state
-  const { getPokemonSprite } = usePokedex();
   const sprite = getPokemonSprite(pokemon.id);
   const { data: imgData, loading, error } = usePalette(sprite); // Get pokemon's sprite colors
 

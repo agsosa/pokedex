@@ -1,7 +1,6 @@
 import tw from 'twin.macro';
 import * as React from 'react';
 import styles from '@/styles/Details.module.css';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import Link from 'next/link';
 
 const TitleBar = tw.div`
@@ -22,7 +21,7 @@ export default function TitleBarComponent({ pokemon }) {
   return (
     <TitleBar className={styles.stroke}>
       <Left>
-        <Link href='/'>
+        <Link href='/pokemons/list/1'>
           <HomeBtn className={styles.stroke}>« Pokedex</HomeBtn>
         </Link>
         <Name>{pokemon.name}</Name>

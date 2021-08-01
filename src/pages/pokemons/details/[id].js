@@ -1,11 +1,10 @@
 import * as React from 'react';
-import usePokedex from '@/lib/usePokedex';
+import { getPokemonDetails, getAbilitiesData } from '@/lib/API';
 import { useRouter } from 'next/router';
 import PokemonDetails from '@/components/pokemon/details';
 
 export default function DetailsPage() {
   const router = useRouter();
-  const { getPokemonDetails, getAbilitiesData } = usePokedex();
   const [pokemon, setPokemon] = React.useState(null);
 
   const fetchData = async () => {
