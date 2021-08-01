@@ -1,15 +1,15 @@
 import * as React from 'react';
-import tw from 'twin.macro';
-import { GiBroadsword } from 'react-icons/gi';
+import tw, { styled } from 'twin.macro';
+import { GiBroadsword, GiSwordArray, GiRosaShield, GiPiercingSword } from 'react-icons/gi';
 import { FaRegHeart } from 'react-icons/fa';
 import { BiShield } from 'react-icons/bi';
 import { Tooltip } from '@chakra-ui/react';
 
-const StatsContainer = tw.div`flex space-x-2 divide-x-2`;
+const StatsContainer = styled.div(({extended}) => [tw`grid grid-cols-3`, extended && tw`text-3xl gap-5 w-1/2`, !extended && tw`gap-2 divide-x-2 text-lg`]);
 
 const Stat = tw.div`flex space-x-2 justify-center items-center w-full px-3`;
-const StatNumber = tw.span`font-bold text-xl`;
-const StatIcon = tw.span`text-gray-600 text-lg`;
+const StatNumber = tw.span`font-semibold`;
+const StatIcon = tw.span`text-gray-600`;
 
 export default function StatsList({ pokemon, extended = false }) {
   let health = 0,
@@ -48,13 +48,13 @@ export default function StatsList({ pokemon, extended = false }) {
     { icon: <FaRegHeart />, name: 'Health', value: health },
     { icon: <GiBroadsword />, name: 'Attack', value: attack },
     { icon: <BiShield />, name: 'Defense', value: defense },
-    { icon: <GiBroadsword />, name: 'Special Attack', value: specialAttack, extended: true },
-    { icon: <BiShield />, name: 'Special Defense', value: specialDefense, extended: true },
-    { icon: <BiShield />, name: 'Speed', value: speed, extended: true },
+    { icon: <GiPiercingSword />, name: 'Special Attack', value: specialAttack, extended: true },
+    { icon: <GiRosaShield />, name: 'Special Defense', value: specialDefense, extended: true },
+    { icon: <GiSwordArray />, name: 'Speed', value: speed, extended: true },
   ];
 
   return (
-    <StatsContainer>
+    <StatsContainer extended={extended}>
       {stats.map((s) => {
         if (s.extended && !extended) return null;
 
