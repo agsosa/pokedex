@@ -20,18 +20,7 @@ export default function usePokedex() {
     try {
       const { data } = await axios.get(URL);
 
-      const resultData = {
-        id: data.id,
-        name: data.name,
-        stats: {
-          health: data.stats[0]?.base_stat,
-          attack: data.stats[1]?.base_stat,
-          defense: data.stats[2]?.base_stat,
-        },
-        types: data.types.map((t) => t.type.name),
-      };
-
-      return { error: false, data: resultData };
+      return { error: false, data };
     } catch (error) {
       return { error, data: null };
     }
