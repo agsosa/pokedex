@@ -5,8 +5,10 @@ import axios from 'axios';
 export default function usePokedex() {
   const BASE_URL = 'https://pokeapi.co'; // TODO: use process.env
 
-  const getPokemons = async () => {
-    const URL = BASE_URL + '/api/v2/pokemon';
+  const ENTRIES_PER_PAGE = 8;// TODO: use process.env
+
+  const getPokemons = async (page = 1) => {
+    const URL = BASE_URL + `/api/v2/pokemon?limit=${ENTRIES_PER_PAGE}&offset=${(page - 1) * ENTRIES_PER_PAGE}`;
 
     try {
       const { data } = await axios.get(URL);

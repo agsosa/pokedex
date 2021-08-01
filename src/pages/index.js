@@ -7,6 +7,7 @@ import PokemonsList from '@/components/pokemon/list';
 import PageContainer from '@/components/layout/PageContainer';
 import MainContainer from '@/components/layout/MainContainer';
 import Footer from '@/components/layout/Footer';
+import Pagination from '@/components/common/Pagination';
 
 export default function Home() {
   const { getPokemonsWithDetails } = usePokedex();
@@ -27,6 +28,7 @@ export default function Home() {
     <PageContainer>
       <MainContainer>
         <PokemonsList pokemons={data} />
+        <Pagination totalPages={5} />
       </MainContainer>
 
       <Footer />
