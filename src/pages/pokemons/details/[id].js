@@ -1,29 +1,38 @@
 import * as React from 'react';
-import { getPokemonDetails, getAbilitiesData } from '@/lib/API';
-import { useRouter } from 'next/router';
+import { getPokemonDetails, getAbilitiesData, getTotalPokemonsCount } from '@/lib/API';
 import PokemonDetails from '@/components/pokemon/details';
 
-export default function DetailsPage() {
-  const router = useRouter();
-  const [pokemon, setPokemon] = React.useState(null);
-
-  const fetchData = async () => {
-    const details = await getPokemonDetails(parseInt(router.query.id));
-    if (details.error) return; // TODO: Show error
-
-    const abilities = await getAbilitiesData(details.data.abilities);
-    if (abilities.error) return; // TODO: Show error
-
-    details.data.abilitiesData = abilities.data;
-    
-    setPokemon(details.data);
-  };
-
-  React.useEffect(() => {
-    fetchData();
-  }, [router.query.id]);
-
-  if (!pokemon) return 'No pokemon loaded';
+export default function DetailsPage({pokemon}) {
+  if (!pokemon) return 'No pokemon found';
 
   return <PokemonDetails pokemon={pokemon} />;
+}
+
+export async function getStaticPaths() {
+  const { data } = await getTotalPokemonsCount();
+
+  const pagesToGo = Array.from({ length: data }, (v, i) => i + 1);
+  const paths = pagesToGo.map((p) => ({
+    params: {
+      id: p.toString(),
+    },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+}
+
+export async function getStaticProps(context) {
+  const { id } = context.params;
+
+  const details = await getPokemonDetails(parseInt(id));
+  const abilities = await getAbilitiesData(details.data.abilities);
+
+  details.data.abilitiesData = abilities.data;
+
+  return {
+    props: { pokemon: details.data },
+  };
 }

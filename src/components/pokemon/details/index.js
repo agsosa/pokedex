@@ -12,14 +12,19 @@ import StatsList from '@/components/pokemon/common/StatsList';
 import TypesList from '@/components/pokemon/common/TypesList';
 import AbilitiesList from '@/components/pokemon/common/AbilitiesList';
 
-const ContentContainer = tw.section`flex justify-between items-start h-full z-10 pt-10 pb-16 px-40 w-full`;
+const ContentContainer = tw.section`
+flex flex-col justify-between items-center 
+h-full w-full z-10 
+pt-10 pb-16 lg:px-40`;
 
 const DetailsGrid = tw.div`grid grid-cols-2 gap-10 w-full items-start justify-center`;
 
 const Section = tw.div`flex flex-col space-y-2 w-full justify-center items-center`;
 const UpperSection = tw.div`col-span-2 flex divide-x-2 divide-gray-300`;
-const SectionTitle = tw.h4`uppercase`;
-const Number = tw.span`text-3xl font-semibold`;
+const SectionTitle = tw.h4`uppercase `;
+const Number = tw.span`text-2xl md:text-3xl font-semibold`;
+
+const BtnContainer = tw.div`flex space-x-4 items-center justify-center p-5 mt-10`;
 
 export default function DetailsComponent({ pokemon }) {
   // TODO: Add next button ID limit condition
@@ -40,12 +45,10 @@ export default function DetailsComponent({ pokemon }) {
       {pokemon.id != null && <DetailsHeader pokemon={pokemon} />}
 
       <ContentContainer>
-        {pokemon.id > 1 && previousButton}
-
         <DetailsGrid>
           <UpperSection>
             <Section>
-              <SectionTitle>Base Experience</SectionTitle>
+              <SectionTitle>Base Exp.</SectionTitle>
               <Number>{pokemon.base_experience}</Number>
             </Section>
             <Section>
@@ -74,7 +77,8 @@ export default function DetailsComponent({ pokemon }) {
           </Section>
         </DetailsGrid>
 
-        {nextButton}
+        <BtnContainer>{pokemon.id > 1 && previousButton}  {nextButton}</BtnContainer>
+
       </ContentContainer>
 
       <Footer />

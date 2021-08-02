@@ -5,7 +5,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { BiShield } from 'react-icons/bi';
 import { Tooltip } from '@chakra-ui/react';
 
-const StatsContainer = styled.div(({extended}) => [tw`grid grid-cols-3`, extended && tw`text-3xl gap-5 w-1/2`, !extended && tw`gap-2 divide-x-2 text-lg`]);
+const StatsContainer = styled.div(({extended}) => [tw`grid grid-cols-3`, extended && tw`text-2xl md:text-3xl gap-8 lg:w-1/2`, !extended && tw`gap-2 divide-x-2 text-lg`]);
 
 const Stat = tw.div`flex space-x-2 justify-center items-center w-full px-3`;
 const StatNumber = tw.span`font-semibold`;

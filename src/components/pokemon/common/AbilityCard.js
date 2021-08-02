@@ -1,8 +1,13 @@
 import { memo } from 'react';
 import tw from 'twin.macro';
 
-const AbilityCard = tw.div`flex flex-col justify-center items-center px-5 py-1 border-l-2 border-gray-300 transition duration-500 hover:bg-gray-200 hover:bg-opacity-60`;
+const AbilityCard = tw.div`
+flex flex-col justify-center items-center 
+px-5 py-1 rounded-xl
+transition duration-500 hover:bg-gray-200 hover:bg-opacity-60`;
+
 const AbilityName = tw.span`text-xl capitalize font-semibold`;
+
 const AbilityDescription = tw.span``;
 
 const AbilitiesList = memo(({ ability }) => {
