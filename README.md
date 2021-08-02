@@ -12,10 +12,11 @@ Frontend app that consumes the pokeapi.co API. Multi-language (english/spanish).
 
 ### How to run locally:
 1) Clone the repo
-2) npm install
-3) npm run dev
+2) ```npm install```
+3) ```npm run dev```
 
-### Testing
+### Tests
+```npm test```
 
 ### Screenshots
 
