@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getPokemonDetails, getAbilitiesData, getTotalPokemonsCount } from '@/lib/API';
+import { getPokemonDetails, getAbilitiesData } from '@/lib/API';
 import PokemonDetails from '@/components/pokemon/details';
 
 export default function DetailsPage({pokemon}) {
@@ -8,26 +8,16 @@ export default function DetailsPage({pokemon}) {
   return <PokemonDetails pokemon={pokemon} />;
 }
 
-export async function getStaticPaths() {
-  const { data } = await getTotalPokemonsCount();
+/*
+  TODO: Move to getStaticPaths/getStaticProps (needs to get all valid pokemon ids )
+*/
 
-  const pagesToGo = Array.from({ length: data }, (v, i) => i + 1);
-  const paths = pagesToGo.map((p) => ({
-    params: {
-      id: p.toString(),
-    },
-  }));
-
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { id } = context.params;
 
   const details = await getPokemonDetails(parseInt(id));
+  if (details.error) return { notFound: true }
+
   const abilities = await getAbilitiesData(details.data.abilities);
 
   details.data.abilitiesData = abilities.data;
