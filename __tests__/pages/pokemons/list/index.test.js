@@ -1,7 +1,12 @@
 import '@testing-library/jest-dom';
 import { render, screen, act } from '@testing-library/react';
 import ListPage, { getStaticProps, getStaticPaths } from '@/pages/pokemons/list/[page].js';
+import * as API from '@/lib/API';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
+import pokemons_list from '../../../mocks/pokemons_list.json';
 
+const axiosMock = new MockAdapter(axios, { onNoMatch: 'throwException' });
 jest.mock('next/router', () => require('next-router-mock'));
 
 describe('Pokemons list page', () => {
@@ -39,6 +44,8 @@ describe('Pokemons list page', () => {
   it('should get correct static paths', async () => {
     let result;
 
+    axiosMock.onGet(`${API.BASE_URL}/api/v2/pokemon?limit=1`).reply(200, pokemons_list);
+
     await act(async () => {
       result = await getStaticPaths();
     });
@@ -54,6 +61,8 @@ describe('Pokemons list page', () => {
 
   it('should get correct static props', async () => {
     let result;
+
+    axiosMock.onGet(`${API.BASE_URL}/api/v2/pokemon?limit=${API.ENTRIES_PER_PAGE}&offset=0`).reply(200, pokemons_list);
 
     await act(async () => {
       result = await getStaticProps({ params: { page: 1 } });
