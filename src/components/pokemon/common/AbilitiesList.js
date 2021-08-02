@@ -7,7 +7,7 @@ export default function AbilitiesList({ pokemon }) {
   return (
     <AbilitiesContainer>
       {pokemon.abilitiesData.map((a) => (
-        <AbilityCard ability={a} />
+        <AbilityCard key={a.id} ability={a} />
       ))}
     </AbilitiesContainer>
   );
