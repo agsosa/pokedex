@@ -10,9 +10,9 @@ const AbilityName = tw.span`text-xl capitalize font-semibold`;
 
 const AbilityDescription = tw.span``;
 
-const AbilitiesList = memo(({ ability }) => {
+const AbilityCardComponent = memo(({ ability }) => {
   const name = ability.names?.find((n) => n.language.name === 'es')?.name || ability.name;
-  const description = ability.flavor_text_entries.find((f) => f.language.name === 'es').flavor_text || '';
+  const description = ability.flavor_text_entries?.find((f) => f.language.name === 'es')?.flavor_text || 'No description';
 
   return (
     <AbilityCard>
@@ -22,4 +22,4 @@ const AbilitiesList = memo(({ ability }) => {
   );
 });
 
-export default AbilitiesList;
+export default AbilityCardComponent;
