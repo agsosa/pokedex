@@ -1,4 +1,11 @@
-// Custom button component
+/*
+  Custom button component
+
+  props:
+    label: string to render as label
+    left: component to render at the left
+    right: component to render at the right
+*/
 
 import { forwardRef } from 'react';
 import tw from 'twin.macro';

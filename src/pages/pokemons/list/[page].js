@@ -15,14 +15,17 @@ import Pagination from '@/components/common/Pagination';
 export default function ListPage({ pokemons, totalPokemons, maxPages, page }) {
   const router = useRouter();
 
+  // On previous page click
   const handlePreviousPage = () => {
     router.push(`/pokemons/list/${parseInt(page) - 1}`);
   };
 
+  // On next page click
   const handleNextPage = () => {
     router.push(`/pokemons/list/${parseInt(page) + 1}`);
   };
 
+  // On page jump
   const handlePageJump = (page) => {
     router.push(`/pokemons/list/${page}`);
   };

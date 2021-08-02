@@ -22,6 +22,7 @@ const AbilityCardComponent = memo(({ ability }) => {
     noDesc: t('no-description'),
   };
 
+  // Get the translated ability name and description
   const name = ability.names?.find((n) => n.language.name === lang)?.name || ability.name;
   const description = ability.flavor_text_entries?.find((f) => f.language.name === lang)?.flavor_text || strings.noDesc;
 

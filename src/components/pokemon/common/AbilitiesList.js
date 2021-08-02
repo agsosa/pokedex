@@ -15,7 +15,7 @@ export default function AbilitiesList({ pokemon }) {
     noAbilities: t('welcome'),
   };
 
-  if (!Array.isArray(pokemon.abilitiesData) || pokemon.abilitiesData.length === 0) return strings.noAbilities;
+  if (!Array.isArray(pokemon.abilitiesData) || pokemon.abilitiesData.length === 0) return strings.noAbilities; // No abilities case
 
   return (
     <AbilitiesContainer>

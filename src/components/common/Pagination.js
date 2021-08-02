@@ -1,4 +1,13 @@
-// Pagination component
+/* 
+  Pagination component
+
+  props:
+    totalPages: number
+    page: number, current page
+    onPreviousPage: function, called on previous button click
+    onNextPage: function, called on next button click
+    onPageJump: function(page: number), called on page jump
+*/
 
 import tw from 'twin.macro';
 import PropTypes from 'prop-types';

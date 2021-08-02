@@ -24,6 +24,7 @@ const Img = tw(Image)`opacity-50 hover:opacity-90 transition duration-500`;
 
 const techIconSize = { width: 34, height: 30 };
 
+// Array of techs to display
 const techs = [
   { name: 'JavaScript', url: 'https://developer.mozilla.org/docs/Web/JavaScript', image: '/js.webp' },
   { name: 'React.js', url: 'https://reactjs.org/', image: '/reactjs.webp' },

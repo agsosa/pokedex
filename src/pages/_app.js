@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider>
       <Head>
-        <title>Pokedex</title>
+        <title>Pokédex</title>
         <meta name='description' content='Pokedex App' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
