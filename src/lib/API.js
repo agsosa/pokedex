@@ -10,7 +10,7 @@
 
 import axios from 'axios';
 
-const BASE_URL = 'https://pokeapi.co'; // TODO: move to process.env
+export const BASE_URL = 'https://pokeapi.co'; // TODO: move to process.env
 export const ENTRIES_PER_PAGE = 8; // TODO: move to process.env
 
 // Get a list of pokemons (paginated)
@@ -19,6 +19,7 @@ export const getPokemons = async (page = 1) => {
 
   try {
     const { data } = await axios.get(URL);
+
     return { error: false, data: data.results };
   } catch (error) {
     return { error, data: error };
@@ -31,6 +32,7 @@ export const getTotalPokemonsCount = async () => {
 
   try {
     const { data } = await axios.get(URL);
+
     return { error: false, data: data.count };
   } catch (error) {
     return { error, data: error };
