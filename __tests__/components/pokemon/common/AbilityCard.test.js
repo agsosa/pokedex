@@ -9,7 +9,7 @@ jest.mock('next-translate/useTranslation', () => {
   }))
 })
 
-describe('Abilities list component', () => {
+describe('Ability card component', () => {
   it('should render the ability info', () => {
     const ability = {
       id: 1,
