@@ -4,12 +4,12 @@ import LanguageSelector from '@/components/common/LanguageSelector';
 const Header = tw.header`
 flex flex-col space-y-4 lg:flex-row
 justify-between items-center 
-w-full 
-pt-8 px-2 lg:px-8 xl:px-24`;
+w-full font-semibold border-b-2 text-gray-700
+py-4 px-2 lg:px-8 xl:px-24`;
 
 const WelcomeContainer = tw.div`flex flex-col text-center`;
 
-const WelcomeText = tw.div`flex flex-col lg:flex-row lg:space-x-4 text-2xl xl:text-3xl text-gray-900 `;
+const WelcomeText = tw.div`flex flex-col lg:flex-row lg:space-x-4 text-2xl xl:text-3xl `;
 
 export default function HeaderComponent({ totalPokemons = 0 }) {
   return (

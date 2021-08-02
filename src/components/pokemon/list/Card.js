@@ -7,7 +7,7 @@ import CardContent from './CardContent';
 
 const Card = tw.a`
 flex flex-col justify-center items-center w-full
-bg-white shadow-xl rounded-xl 
+bg-white shadow-lg rounded-xl 
 cursor-pointer
 transform hover:scale-110 transition duration-500`;
 
