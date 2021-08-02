@@ -1,4 +1,6 @@
-module.exports = {
+const nextTranslate = require('next-translate')
+
+module.exports = nextTranslate({
   webpack5: true,
   reactStrictMode: true,
   images: { domains: ['raw.githubusercontent.com'] },
@@ -22,4 +24,4 @@ module.exports = {
       },
     ];
   },
-};
+});

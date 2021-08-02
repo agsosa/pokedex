@@ -1,5 +1,9 @@
+// Component to display an ability
+
 import { memo } from 'react';
 import tw from 'twin.macro';
+import useTranslation from 'next-translate/useTranslation';
+import propTypes from 'prop-types';
 
 const AbilityCard = tw.div`
 flex flex-col justify-center items-center 
@@ -11,8 +15,15 @@ const AbilityName = tw.span`text-xl capitalize font-semibold`;
 const AbilityDescription = tw.span``;
 
 const AbilityCardComponent = memo(({ ability }) => {
-  const name = ability.names?.find((n) => n.language.name === 'es')?.name || ability.name;
-  const description = ability.flavor_text_entries?.find((f) => f.language.name === 'es')?.flavor_text || 'No description';
+  const { t, lang } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    noDesc: t('no-description'),
+  };
+
+  const name = ability.names?.find((n) => n.language.name === lang)?.name || ability.name;
+  const description = ability.flavor_text_entries?.find((f) => f.language.name === lang)?.flavor_text || strings.noDesc;
 
   return (
     <AbilityCard>
@@ -23,3 +34,11 @@ const AbilityCardComponent = memo(({ ability }) => {
 });
 
 export default AbilityCardComponent;
+
+AbilityCardComponent.propTypes = {
+  ability: propTypes.shape({ 
+    names: propTypes.arrayOf(propTypes.object), 
+    flavor_text_entries: propTypes.arrayOf(propTypes.object), 
+    name: propTypes.string 
+  }).isRequired,
+};

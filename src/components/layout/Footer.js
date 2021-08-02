@@ -4,10 +4,16 @@ import { memo } from 'react';
 import tw from 'twin.macro';
 import Image from 'next/image';
 import { Tooltip } from '@chakra-ui/react';
+import useTranslation from 'next-translate/useTranslation';
+import LanguageSelector from '@/components/common/LanguageSelector';
 
-const Footer = tw.footer`mt-auto bg-gray-100 border-t border-black border-opacity-10 w-full py-10 px-14 flex flex-col space-y-4 md:space-y-0 md:flex-row items-center justify-between`;
+const Footer = tw.footer`
+bg-gray-100 border-t border-black border-opacity-10 
+w-full py-10 px-14 mt-auto
+flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-center justify-between`;
 
-const Left = tw.span`text-xl md:text-lg font-semibold flex justify-center items-center space-x-4`;
+const Left = tw.span`text-xl md:text-lg font-semibold 
+flex flex-col space-y-3 justify-center items-center md:flex-row md:space-y-0 md:space-x-4`;
 const YearText = tw.span`ml-1 text-gray-400 text-base font-normal`;
 
 const Right = tw.span`flex space-x-3 justify-center items-center text-gray-800`;
@@ -26,18 +32,26 @@ const techs = [
 ];
 
 const FooterComponent = memo(() => {
+  const { t } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    createdWith: t('created-with'),
+  };
+
   return (
     <Footer>
       <Left>
-        Alejandro Sosa <YearText>© {new Date().getFullYear()}</YearText>
+        <span>Alejandro Sosa <YearText>© {new Date().getFullYear()}</YearText></span>
+        <LanguageSelector />
       </Left>
       <Right>
-        <TechText>Created with</TechText>
+        <TechText>{strings.createdWith}</TechText>
         <TechContainer>
           {/* Map the techs array to images */}
           {techs.map((t) => (
             <Tooltip key={t.name} label={t.name} placement='top'>
-              <a href={t.url} target='_blank' rel="noreferrer">
+              <a href={t.url} target='_blank' rel='noreferrer'>
                 <Img src={t.image} {...techIconSize} />
               </a>
             </Tooltip>

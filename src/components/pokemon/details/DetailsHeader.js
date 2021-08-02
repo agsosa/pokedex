@@ -1,11 +1,15 @@
+// Header for our pokemon details page
+
 import tw from 'twin.macro';
 import * as React from 'react';
 import Image from 'next/image';
 import { usePalette } from 'react-palette';
-import { getPokemonSprite } from '@/lib/API';
-import TitleBar from '@/components/pokemon/details/TitleBar';
-import styles from '@/styles/Details.module.css';
 import { motion } from 'framer-motion';
+import propTypes from 'prop-types';
+
+import { getPokemonSprite } from '@/lib/API';
+import TitleBar from '@/components/pokemon/details/DetailsTitleBar';
+import styles from '@/styles/Details.module.css';
 
 const Header = tw.div`w-full flex flex-col justify-between items-center relative `;
 
@@ -30,4 +34,8 @@ export default function DetailsHeader({ pokemon }) {
       </SpriteContainer>
     </Header>
   );
+}
+
+DetailsHeader.propTypes = {
+  pokemon: propTypes.shape({id: propTypes.number, name: propTypes.string}).isRequired
 }

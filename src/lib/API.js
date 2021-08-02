@@ -1,9 +1,19 @@
+/*
+  Module to interact with pokeapi.co endpoints
+
+  Async methods in this module always resolve with an object 
+  { 
+    error: boolean (true if the request failed), 
+    data: any (error object if the request failed, otherwise the expected data from the endpoint) 
+  }
+*/
+
 import axios from 'axios';
 
-const BASE_URL = 'https://pokeapi.co'; // TODO: use process.env
+const BASE_URL = 'https://pokeapi.co'; // TODO: move to process.env
+export const ENTRIES_PER_PAGE = 8; // TODO: move to process.env
 
-export const ENTRIES_PER_PAGE = 8; // TODO: use process.env
-
+// Get a list of pokemons (paginated)
 export const getPokemons = async (page = 1) => {
   const URL = BASE_URL + `/api/v2/pokemon?limit=${ENTRIES_PER_PAGE}&offset=${(page - 1) * ENTRIES_PER_PAGE}`;
 
@@ -11,10 +21,11 @@ export const getPokemons = async (page = 1) => {
     const { data } = await axios.get(URL);
     return { error: false, data: data.results };
   } catch (error) {
-    return { error, data: null };
+    return { error, data: error };
   }
 };
 
+// Get the total pokemons count
 export const getTotalPokemonsCount = async () => {
   const URL = BASE_URL + `/api/v2/pokemon?limit=1`;
 
@@ -22,10 +33,11 @@ export const getTotalPokemonsCount = async () => {
     const { data } = await axios.get(URL);
     return { error: false, data: data.count };
   } catch (error) {
-    return { error, data: null };
+    return { error, data: error };
   }
 }
 
+// Get the details about a pokemon by id or name
 export const getPokemonDetails = async (id_or_name) => {
   const URL = `${BASE_URL}/api/v2/pokemon/${id_or_name}`;
 
@@ -34,10 +46,11 @@ export const getPokemonDetails = async (id_or_name) => {
 
     return { error: false, data };
   } catch (error) {
-    return { error, data: null };
+    return { error, data: error };
   }
 };
 
+// Get the details about an ability by id or name
 export const getAbilityData = async (id_or_name) => {
   const URL = `${BASE_URL}/api/v2/ability/${id_or_name}`;
 
@@ -46,10 +59,11 @@ export const getAbilityData = async (id_or_name) => {
 
     return { error: false, data };
   } catch (error) {
-    return { error, data: null };
+    return { error, data: error };
   }
 };
 
+// Get the details for every ability in an array
 export const getAbilitiesData = async (abilities) => {
   const promises = [];
   const result = [];
@@ -74,6 +88,7 @@ export const getAbilitiesData = async (abilities) => {
   return { error: false, data: result };
 };
 
+// Get a list of pokemons with details
 export const getPokemonsWithDetails = async (page = 1) => {
   const promises = [];
   const result = [];
@@ -102,9 +117,6 @@ export const getPokemonsWithDetails = async (page = 1) => {
   return { error: false, data: result };
 };
 
-// official-artwork
-
-export const getPokemonSprite = (id) =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-
-  //  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+// Returns a pokemon image URL
+export const getPokemonSprite = (id) => `/pokemon-sprites/${id}.webp`;
+  //`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;

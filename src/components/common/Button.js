@@ -1,5 +1,6 @@
 // Custom button component
 
+import { forwardRef } from 'react';
 import tw from 'twin.macro';
 import PropTypes from 'prop-types';
 
@@ -12,24 +13,28 @@ px-3 py-1
 hocus:outline-none cursor-pointer
 transition duration-300 hover:bg-gray-800 hover:text-gray-100`;
 
-export default function Button({ left, right, label, ...props }) {
+const Button = forwardRef(({ left, right, label, href, ...props }, ref) => {
   return (
-    <Btn {...props}>
+    <Btn ref={ref} href={href} {...props}>
       {left}
-      <span>{label}</span>
+      {label && <span>{label}</span>}
       {right}
     </Btn>
   );
-}
+});
 
 Button.defaultProps = {
   label: '',
   left: null,
   right: null,
+  href: "",
 };
 
 Button.propTypes = {
   left: PropTypes.node,
   right: PropTypes.node,
   label: PropTypes.string,
+  href: PropTypes.string
 };
+
+export default Button;
