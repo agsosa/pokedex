@@ -7,7 +7,10 @@ import { Tooltip } from '@chakra-ui/react';
 import useTranslation from 'next-translate/useTranslation';
 import LanguageSelector from '@/components/common/LanguageSelector';
 
-const Footer = tw.footer`mt-auto bg-gray-100 border-t border-black border-opacity-10 w-full py-10 px-14 flex flex-col space-y-4 md:space-y-0 md:flex-row items-center justify-between`;
+const Footer = tw.footer`
+bg-gray-100 border-t border-black border-opacity-10 
+w-full py-10 px-14 mt-auto
+flex flex-col space-y-4 lg:space-y-0 lg:flex-row items-center justify-between`;
 
 const Left = tw.span`text-xl md:text-lg font-semibold 
 flex flex-col space-y-3 justify-center items-center md:flex-row md:space-y-0 md:space-x-4`;
