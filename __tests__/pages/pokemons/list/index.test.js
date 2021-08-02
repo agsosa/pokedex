@@ -13,6 +13,12 @@ describe('Pokemons list page', () => {
         stats: [],
         types: [],
       },
+      {
+        id: 2,
+        name: 'p2',
+        stats: [],
+        types: [],
+      },
     ];
 
     render(<ListPage pokemons={pokemons} totalPokemons={1000} maxPages={132} page={1} />);
@@ -20,10 +26,14 @@ describe('Pokemons list page', () => {
     const header = screen.getByText('welcome', { exact: false });
     const main = screen.getByRole('main');
     const footer = screen.getByText('alejandro', { exact: false });
+    const pokemon1 = screen.getByText('p1', { exact: true });
+    const pokemon2 = screen.getByText('p2', { exact: true });
 
     expect(main).toBeInTheDocument();
     expect(header).toBeInTheDocument();
     expect(footer).toBeInTheDocument();
+    expect(pokemon1).toBeInTheDocument();
+    expect(pokemon2).toBeInTheDocument();
   });
 
   it('should get correct static paths', async () => {

@@ -12,7 +12,7 @@ export default function AbilitiesList({ pokemon }) {
 
   // Localized strings
   const strings = {
-    noAbilities: t('welcome'),
+    noAbilities: t('no-abilities'),
   };
 
   if (!Array.isArray(pokemon.abilitiesData) || pokemon.abilitiesData.length === 0) return strings.noAbilities; // No abilities case
