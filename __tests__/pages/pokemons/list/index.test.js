@@ -42,31 +42,25 @@ describe('Pokemons list page', () => {
   });
 
   it('should get correct static paths', async () => {
-    let result;
-
     axiosMock.onGet(`${API.BASE_URL}/api/v2/pokemon?limit=1`).reply(200, pokemons_list);
 
-    await act(async () => {
-      result = await getStaticPaths();
-    });
+    const result = await getStaticPaths();
 
     const { paths } = result;
 
     expect(paths).toEqual(
-      expect.arrayContaining([{
-        params: expect.objectContaining({ page: expect.any(String) }),
-      }])
+      expect.arrayContaining([
+        {
+          params: expect.objectContaining({ page: expect.any(String) }),
+        },
+      ])
     );
   });
 
   it('should get correct static props', async () => {
-    let result;
-
     axiosMock.onGet(`${API.BASE_URL}/api/v2/pokemon?limit=${API.ENTRIES_PER_PAGE}&offset=0`).reply(200, pokemons_list);
 
-    await act(async () => {
-      result = await getStaticProps({ params: { page: 1 } });
-    });
+    const result = await getStaticProps({ params: { page: 1 } });
 
     const { props } = result;
 
