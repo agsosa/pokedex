@@ -11,6 +11,7 @@ import Button from '@/components/common/Button';
 import StatsList from '@/components/pokemon/common/StatsList';
 import TypesList from '@/components/pokemon/common/TypesList';
 import AbilitiesList from '@/components/pokemon/common/AbilitiesList';
+import useTranslation from 'next-translate/useTranslation';
 
 const ContentContainer = tw.section`
 flex flex-col justify-between items-center 
@@ -27,16 +28,30 @@ const Number = tw.span`text-2xl md:text-3xl font-semibold`;
 const BtnContainer = tw.div`flex space-x-4 items-center justify-center p-5 mt-10`;
 
 export default function DetailsComponent({ pokemon }) {
+  const { t } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    previous: t('previous'),
+    next: t('next'),
+    baseExp: t("base-exp"),
+    height: t("height"),
+    weight: t("weight"),
+    statistics: t("statistics"),
+    types: t("types"),
+    abilities: t("abilities")
+  };
+
   // TODO: Add next button ID limit condition
   const previousButton = (
     <Link href={`/pokemons/details/${pokemon.id - 1}`}>
-      <Button left={<AiOutlineArrowLeft />} label='Previous' />
+      <Button left={<AiOutlineArrowLeft />} label={strings.previous} />
     </Link>
   );
 
   const nextButton = (
     <Link href={`/pokemons/details/${pokemon.id + 1}`}>
-      <Button right={<AiOutlineArrowRight />} label='Next' />
+      <Button right={<AiOutlineArrowRight />} label={strings.next} />
     </Link>
   );
 
@@ -48,31 +63,31 @@ export default function DetailsComponent({ pokemon }) {
         <DetailsGrid>
           <UpperSection>
             <Section>
-              <SectionTitle>Base Exp.</SectionTitle>
+              <SectionTitle>{strings.baseExp}</SectionTitle>
               <Number>{pokemon.base_experience}</Number>
             </Section>
             <Section>
-              <SectionTitle>Height</SectionTitle>
+              <SectionTitle>{strings.height}</SectionTitle>
               <Number>{pokemon.height}</Number>
             </Section>
             <Section>
-              <SectionTitle>Weight</SectionTitle>
+              <SectionTitle>{strings.weight}</SectionTitle>
               <Number>{pokemon.weight}</Number>
             </Section>
           </UpperSection>
 
           <Section tw="col-span-2">
-            <SectionTitle>Statistics</SectionTitle>
+            <SectionTitle>{strings.statistics}</SectionTitle>
             <StatsList pokemon={pokemon} extended />
           </Section>
 
           <Section tw="col-span-2">
-            <SectionTitle>Types</SectionTitle>
+            <SectionTitle>{strings.types}</SectionTitle>
             <TypesList pokemon={pokemon} big />
           </Section>
 
           <Section tw="col-span-2">
-            <SectionTitle>Abilities</SectionTitle>
+            <SectionTitle>{strings.abilities}</SectionTitle>
             <AbilitiesList pokemon={pokemon} />
           </Section>
         </DetailsGrid>

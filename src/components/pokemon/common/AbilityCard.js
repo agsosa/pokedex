@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import tw from 'twin.macro';
+import useTranslation from 'next-translate/useTranslation';
 
 const AbilityCard = tw.div`
 flex flex-col justify-center items-center 
@@ -11,8 +12,15 @@ const AbilityName = tw.span`text-xl capitalize font-semibold`;
 const AbilityDescription = tw.span``;
 
 const AbilityCardComponent = memo(({ ability }) => {
-  const name = ability.names?.find((n) => n.language.name === 'es')?.name || ability.name;
-  const description = ability.flavor_text_entries?.find((f) => f.language.name === 'es')?.flavor_text || 'No description';
+  const { t, lang } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    noDesc: t('no-description'),
+  };
+
+  const name = ability.names?.find((n) => n.language.name === lang)?.name || ability.name;
+  const description = ability.flavor_text_entries?.find((f) => f.language.name === lang)?.flavor_text || strings.noDesc;
 
   return (
     <AbilityCard>

@@ -1,10 +1,18 @@
 import tw from 'twin.macro';
 import AbilityCard from './AbilityCard';
+import useTranslation from 'next-translate/useTranslation';
 
 const AbilitiesContainer = tw.div`w-full flex flex-col space-y-6 max-w-lg text-center md:text-left`;
 
 export default function AbilitiesList({ pokemon }) {
-  if (!Array.isArray(pokemon.abilitiesData) || pokemon.abilitiesData.length === 0) return "No abilities";
+  const { t } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    noAbilities: t('welcome'),
+  };
+
+  if (!Array.isArray(pokemon.abilitiesData) || pokemon.abilitiesData.length === 0) return strings.noAbilities;
 
   return (
     <AbilitiesContainer>

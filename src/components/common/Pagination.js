@@ -2,6 +2,7 @@
 
 import tw from 'twin.macro';
 import PropTypes from 'prop-types';
+import useTranslation from 'next-translate/useTranslation';
 
 const Container = tw.div`w-full flex flex-col space-y-2 mt-8 text-xl justify-center items-center`;
 
@@ -15,7 +16,16 @@ const PageText = tw.span``;
 const BtnContainer = tw.div`flex space-x-2`;
 
 export default function Pagination({ totalPages = 0, page = 1, onPreviousPage, onNextPage, onPageJump }) {
-  if (totalPages === 0) return null;
+  const { t } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    page: t('page'),
+    first: t('first'),
+    previous: t('previous'),
+    next: t('next'),
+    last: t('last'),
+  };
 
   const handleFirstPage = () => {
     if (onPageJump) onPageJump(1);
@@ -28,23 +38,25 @@ export default function Pagination({ totalPages = 0, page = 1, onPreviousPage, o
   const isFirstPage = page == 1;
   const isLastPage = page == totalPages;
 
+  if (totalPages === 0) return null;
+
   return (
     <Container>
       <PageText>
-        Page {page}/{totalPages}
+        {strings.page} {page}/{totalPages}
       </PageText>
       <BtnContainer>
         <Btn disabled={isFirstPage} onClick={handleFirstPage}>
-          First
+          {strings.first}
         </Btn>
         <Btn disabled={isFirstPage} onClick={onPreviousPage}>
-          Previous
+          {strings.previous}
         </Btn>
         <Btn disabled={isLastPage} onClick={onNextPage}>
-          Next
+          {strings.next}
         </Btn>
         <Btn disabled={isLastPage} onClick={handleLastPage}>
-          Last
+          {strings.last}
         </Btn>
       </BtnContainer>
     </Container>

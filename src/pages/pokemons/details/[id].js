@@ -3,7 +3,7 @@ import { getPokemonDetails, getAbilitiesData } from '@/lib/API';
 import PokemonDetails from '@/components/pokemon/details';
 
 export default function DetailsPage({pokemon}) {
-  if (!pokemon) return 'No pokemon found';
+  if (!pokemon) return null;
 
   return <PokemonDetails pokemon={pokemon} />;
 }

@@ -4,6 +4,7 @@ import { memo } from 'react';
 import tw from 'twin.macro';
 import Image from 'next/image';
 import { Tooltip } from '@chakra-ui/react';
+import useTranslation from 'next-translate/useTranslation';
 
 const Footer = tw.footer`mt-auto bg-gray-100 border-t border-black border-opacity-10 w-full py-10 px-14 flex flex-col space-y-4 md:space-y-0 md:flex-row items-center justify-between`;
 
@@ -26,13 +27,20 @@ const techs = [
 ];
 
 const FooterComponent = memo(() => {
+  const { t } = useTranslation('common');
+
+  // Localized strings
+  const strings = {
+    createdWith: t('created-with'),
+  };
+
   return (
     <Footer>
       <Left>
         Alejandro Sosa <YearText>© {new Date().getFullYear()}</YearText>
       </Left>
       <Right>
-        <TechText>Created with</TechText>
+        <TechText>{strings.createdWith}</TechText>
         <TechContainer>
           {/* Map the techs array to images */}
           {techs.map((t) => (
