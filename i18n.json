@@ -2,6 +2,6 @@
   "locales": ["en", "es"],
   "defaultLocale": "en",
   "pages": {
-    "*": ["common"]
+    "*": ["common", "pokemon_types"]
   }
 }

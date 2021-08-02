@@ -16,7 +16,7 @@ export default function Button({ left, right, label, ...props }) {
   return (
     <Btn {...props}>
       {left}
-      <span>{label}</span>
+      {label && <span>{label}</span>}
       {right}
     </Btn>
   );
