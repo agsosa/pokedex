@@ -1,6 +1,9 @@
+// Simple header component
+
 import tw from 'twin.macro';
 import LanguageSelector from '@/components/common/LanguageSelector';
 import useTranslation from 'next-translate/useTranslation';
+import propTypes from 'prop-types';
 
 const Header = tw.header`
 flex flex-col space-y-4 lg:flex-row
@@ -29,4 +32,12 @@ export default function HeaderComponent({ totalPokemons = 0 }) {
       <LanguageSelector />
     </Header>
   );
+}
+
+HeaderComponent.defaultProps = {
+  totalPokemons: 0
+}
+
+HeaderComponent.proptYpes = {
+  totalPokemons: propTypes.number,
 }

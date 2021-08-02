@@ -1,6 +1,9 @@
+// Component to display an ability
+
 import { memo } from 'react';
 import tw from 'twin.macro';
 import useTranslation from 'next-translate/useTranslation';
+import propTypes from 'prop-types';
 
 const AbilityCard = tw.div`
 flex flex-col justify-center items-center 
@@ -31,3 +34,11 @@ const AbilityCardComponent = memo(({ ability }) => {
 });
 
 export default AbilityCardComponent;
+
+AbilityCardComponent.propTypes = {
+  ability: propTypes.shape({ 
+    names: propTypes.arrayOf(propTypes.object), 
+    flavor_text_entries: propTypes.arrayOf(propTypes.object), 
+    name: propTypes.string 
+  }).isRequired,
+};

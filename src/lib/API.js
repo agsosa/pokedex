@@ -1,5 +1,7 @@
 /*
-  Aasync methods in this module always resolve with an object 
+  Module to interact with pokeapi.co endpoints
+
+  Async methods in this module always resolve with an object 
   { 
     error: boolean (true if the request failed), 
     data: any (error object if the request failed, otherwise the expected data from the endpoint) 
@@ -8,8 +10,8 @@
 
 import axios from 'axios';
 
-const BASE_URL = 'https://pokeapi.co'; // TODO: use process.env
-export const ENTRIES_PER_PAGE = 8; // TODO: use process.env
+const BASE_URL = 'https://pokeapi.co'; // TODO: move to process.env
+export const ENTRIES_PER_PAGE = 8; // TODO: move to process.env
 
 // Get a list of pokemons (paginated)
 export const getPokemons = async (page = 1) => {
@@ -116,5 +118,5 @@ export const getPokemonsWithDetails = async (page = 1) => {
 };
 
 // Returns a pokemon image URL
-export const getPokemonSprite = (id) =>
-  `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
+export const getPokemonSprite = (id) => `/pokemon-sprites/${id}.webp`;
+  //`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;

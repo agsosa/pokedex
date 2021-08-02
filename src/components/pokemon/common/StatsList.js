@@ -1,3 +1,5 @@
+// Component to display the statistics of a specific pokemon
+
 import * as React from 'react';
 import tw, { styled } from 'twin.macro';
 import { GiBroadsword, GiSwordArray, GiRosaShield, GiPiercingSword } from 'react-icons/gi';
@@ -5,8 +7,13 @@ import { FaRegHeart } from 'react-icons/fa';
 import { BiShield } from 'react-icons/bi';
 import { Tooltip } from '@chakra-ui/react';
 import useTranslation from 'next-translate/useTranslation';
+import propTypes from 'prop-types';
 
-const StatsContainer = styled.div(({extended}) => [tw`grid grid-cols-3`, extended && tw`text-2xl md:text-3xl gap-8 lg:w-1/2`, !extended && tw`gap-2 divide-x-2 text-lg`]);
+const StatsContainer = styled.div(({extended}) => [
+  tw`grid grid-cols-3`,
+ extended && tw`text-2xl md:text-3xl gap-8 lg:w-1/2`, 
+ !extended && tw`gap-2 divide-x-2 text-lg`
+]);
 
 const Stat = tw.div`flex space-x-2 justify-center items-center w-full px-3`;
 const StatNumber = tw.span`font-semibold`;
@@ -32,6 +39,7 @@ export default function StatsList({ pokemon, extended = false }) {
     specialDefense = 0,
     speed = 0;
 
+  // Get each pokemon stat
   for (let stat of pokemon.stats) {
     const { base_stat } = stat;
 
@@ -57,6 +65,7 @@ export default function StatsList({ pokemon, extended = false }) {
     }
   }
 
+  // Build array to display each stat
   const stats = [
     { icon: <FaRegHeart />, name: strings.health, value: health },
     { icon: <GiBroadsword />, name: strings.attack, value: attack },
@@ -83,4 +92,13 @@ export default function StatsList({ pokemon, extended = false }) {
       })}
     </StatsContainer>
   );
+}
+
+StatsList.defaultProps = {
+  extended: false
+}
+
+StatsList.propTypes = {
+  pokemon: propTypes.shape({ stats: propTypes.arrayOf(propTypes.object)}).isRequired,
+  extended: propTypes.bool
 }
