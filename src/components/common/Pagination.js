@@ -15,7 +15,7 @@ import useTranslation from 'next-translate/useTranslation';
 
 const Container = tw.div`w-full flex flex-col space-y-2 mt-8 text-xl justify-center items-center`;
 
-const Btn = tw.button`border px-3 py-1 bg-white rounded-md 
+const Btn = tw.button`border text-sm md:text-base px-1 md:px-3 py-1 bg-white rounded-md 
 disabled:opacity-60 disabled:cursor-not-allowed 
 hocus:outline-none 
 transition duration-500 hover:bg-gray-200`;
